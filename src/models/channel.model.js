@@ -36,7 +36,8 @@ const channelSchema = mongoose.Schema({
     detailsAboutInsiders: {
         type: {
             ceo: {
-                type: String // email.
+                type: String, // email.
+                required: true,
             },
             contentManagement: {
                 type: String,
@@ -88,7 +89,34 @@ const channelSchema = mongoose.Schema({
                 ref: 'Comment',
             }
         ]
-    }
+    },
+    InterestModel: {
+        type: {
+            taggsInterestedIn: {
+                type: [
+                    {
+                        type: [ String ],
+                    }
+                ]
+            },
+            taggsNotInterestedIn: {
+                type: [
+                    {
+                        type: [ String ],
+                    }
+                ]
+            },
+            previous10ArticleHistory: {
+                type: [
+                    {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'Asset',
+                    }
+                ]
+            }
+        },
+        default: () => ({}),
+    },
 
 }, { timestamps: true });
 

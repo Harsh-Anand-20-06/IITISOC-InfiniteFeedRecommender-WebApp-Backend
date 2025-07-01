@@ -6,6 +6,7 @@ import {connectDB} from './src/utils/utils.js';
 import userRoutes from './src/routes/user.routes.js';
 import assetRoutes from './src/routes/asset.routes.js';
 import authRoutes from './src/routes/auth.routes.js'; 
+import channelRoutes from './src/routes/channel.routes.js'; 
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/asset', assetRoutes);
+app.use('/api/channel', channelRoutes)
 
 app.get('/', (req, res) => {
   res.send('Server is running!');
@@ -32,7 +34,6 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
-
+    console.log(`Server is listening on port ${PORT}`);
     connectDB();
 });
